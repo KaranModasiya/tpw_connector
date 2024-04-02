@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<record id="view_tpw_tree" model="ir.ui.view">
+		<field name="name">tpw.tree</field>
+		<field name="model">tpw</field>
+		<field name="arch" type="xml">
+			<tree string="Third Party Warehouse">
+				<field name="partner_id"/>
+				<field name="host"/>
+				<field name="port"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="view_tpw_form" model="ir.ui.view">
+		<field name="name">tpw.form</field>
+		<field name="model">tpw</field>
+		<field name="arch" type="xml">
+			<form string="Third Party Warehouse">
+				<sheet>
+					<group>
+						<field name="partner_id"/>
+					</group>
+					<group>
+						<group>
+							<field name="host"/>
+							<field name="port"/>
+						</group>
+						<group>
+							<field name="username"/>
+							<field name="password"/>
+						</group>
+					</group>
+					<notebook>
+						<page name="paths" string="Directory Paths">
+							<field name="path_ids">
+								<tree>
+									<field name="path"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="view_tpw_search" model="ir.ui.view">
+		<field name="name">tpw.search</field>
+		<field name="model">tpw</field>
+		<field name="arch" type="xml">
+			<tree string="Third Party Warehouse">
+				<field name="partner_id"/>
+				<field name="host"/>
+				<field name="port"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_tpw" model="ir.actions.act_window">
+		<field name="name">Third Party Warehouse</field>
+		<field name="res_model">tpw</field>
+		<field name="view_mode">tree,form</field>
+		<field name="search_view_id" ref="view_tpw_search"/>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				No records are available to show.
+			</p>
+		</field>
+	</record>
+
+<!--	<menuitem id="tpw_main_menu" string="TWP Connector"/>-->
+
+<!--	<menuitem id="menu_twp_submenu"-->
+<!--			  string="TWP Connector"-->
+<!--			  parent="menu_tpw_main"-->
+<!--	/>-->
+
+<!--	<menuitem id="menu_twp_submenu_child_tpw"-->
+<!--			  string="TWP"-->
+<!--			  parent="menu_tpw_submain"-->
+<!--			  action="action_tpw"-->
+<!--	/>-->
+</odoo>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<record id="view_transfer_data_wizard_form" model="ir.ui.view">
+		<field name="name">transfer.data.wizard.view</field>
+		<field name="model">transfer.data.wizard</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="tpw_id"/>
+						<field name="operation_type"/>
+						<field name="operation" domain="[('tpw_id', '=', tpw_id.id)]"/>
+						<field name="product_ids" widget="many2many_tags" invisible="context.get('type') != 'product'"/>
+						<field name="sale_picking_ids" widget="many2many_tags" invisible="context.get('type') != 'delivery'" domain="[('state', '=', 'assigned'), ('picking_type_code', '=', 'outgoing')]"/>
+						<field name="purchase_picking_ids" widget="many2many_tags" invisible="context.get('type') != 'purchase'" domain="[('state', '=', 'assigned'), ('picking_type_code', '=', 'incoming')]"/>
+					</group>
+					<footer>
+						<button name="action_execute" string="Transfer" type="object"/>
+						<button special="cancel" string="Cancel"/>
+					</footer>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_transfer_data_wizard_product" model="ir.actions.act_window">
+		<field name="name">Transfer Data</field>
+		<field name="res_model">transfer.data.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="tpw_connector.view_transfer_data_wizard_form"/>
+		<field name="context">{'type':'product'}</field>
+		<field name="target">new</field>
+	</record>
+
+	<record id="action_transfer_data_wizard_delivery" model="ir.actions.act_window">
+		<field name="name">Transfer Data</field>
+		<field name="res_model">transfer.data.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="tpw_connector.view_transfer_data_wizard_form"/>
+		<field name="context">{'type':'delivery'}</field>
+		<field name="target">new</field>
+	</record>
+
+	<record id="action_transfer_data_wizard_purchase" model="ir.actions.act_window">
+		<field name="name">Transfer Data</field>
+		<field name="res_model">transfer.data.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="tpw_connector.view_transfer_data_wizard_form"/>
+		<field name="context">{'type':'purchase'}</field>
+		<field name="target">new</field>
+	</record>
+</odoo>

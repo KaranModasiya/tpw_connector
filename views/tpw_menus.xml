@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<menuitem id="menu_tpw_main"
+			  string="TWP Connector"
+			  sequence="0"
+	/>
+
+	<menuitem id="menu_twp_submenu"
+			  string="TWP Connector"
+			  parent="menu_tpw_main"
+	/>
+
+	<menuitem id="menu_twp_submenu_child_tpw"
+			  string="TWP"
+			  parent="menu_tpw_submain"
+			  action="action_tpw"
+	/>
+</odoo>
